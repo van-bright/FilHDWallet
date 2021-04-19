@@ -10,12 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilHDWallet = void 0;
-const filecoin_js_1 = require("filecoin.js");
+const passion_filecoin_js_1 = require("passion-filecoin.js");
 const bip39_1 = require("bip39");
-class FilHDWallet extends filecoin_js_1.MnemonicWalletProvider {
+class FilHDWallet extends passion_filecoin_js_1.MnemonicWalletProvider {
     constructor(options, mnemonic) {
-        const httpConnector = new filecoin_js_1.HttpJsonRpcConnector(options);
-        const con = new filecoin_js_1.LotusClient(httpConnector);
+        const httpConnector = new passion_filecoin_js_1.HttpJsonRpcConnector(options);
+        const con = new passion_filecoin_js_1.LotusClient(httpConnector);
         if (!mnemonic) {
             mnemonic = bip39_1.generateMnemonic(128);
         }

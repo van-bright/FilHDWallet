@@ -1,6 +1,6 @@
-import { HttpJsonRpcConnector, MnemonicWalletProvider, LotusClient } from "filecoin.js";
+import { HttpJsonRpcConnector, MnemonicWalletProvider, LotusClient } from "passion-filecoin.js";
 import { generateMnemonic } from 'bip39';
-import { KeyInfo, Message } from "filecoin.js/builds/dist/providers/Types";
+import { KeyInfo, Message } from "passion-filecoin.js/builds/dist/providers/Types";
 import { BigNumber } from 'bignumber.js';
 
 export class FilHDWallet extends  MnemonicWalletProvider {
