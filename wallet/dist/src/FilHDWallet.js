@@ -82,7 +82,9 @@ class FilHDWallet extends filecoin_js_1.MnemonicWalletProvider {
         });
     }
     // to transfer value from 'from' to 'to' with value.
-    transfer(from, to, value) {
+    // if `privateKey` is provided, the message will be signed with it,
+    // or the message is signed by `from` in this wallet.
+    transfer(from, to, value, privateKey) {
         const _super = Object.create(null, {
             createMessage: { get: () => super.createMessage },
             signMessage: { get: () => super.signMessage },
@@ -94,6 +96,7 @@ class FilHDWallet extends filecoin_js_1.MnemonicWalletProvider {
                 From: from,
                 To: to,
                 Value: value,
+                PrivateKey: privateKey
             });
             const signedMessage = yield _super.signMessage.call(this, message);
             const msgCid = yield _super.sendSignedMessage.call(this, signedMessage);

@@ -2,8 +2,14 @@
 
 **FilHDWallet**是用来管理FileCoin上账户信息, 转账, 及其交易列表的SDK. 
 
+
+
 ## 使用说明
-完整的示例代码, 请参考[使用示例](./example/usage.ts);  
+项目分为两个部分, `wallet`是钱包, `filecoin.js`是wallet的依赖项目.  
+
+分别在以上两个项目中执行`npm install`
+
+完整的示例代码, 请参考[使用示例](./wallet/example/usage.ts);  
 
 ### 创建钱包
 创建钱包有两种方式: 重新创建, 使用已知的助记词创建.  
@@ -23,7 +29,7 @@ const receipt = await wallet.transfer(FaucetAccount, to, new BigNumber('10000000
 返回值:
 ```json
 {
-  '/': 'bafy2bzacea7yoer3jicugeoh2gcwhqdvbyppa6nertn264galxzufblklbtaa'
+  "/": "bafy2bzacea7yoer3jicugeoh2gcwhqdvbyppa6nertn264galxzufblklbtaa"
 }
 ```
 
@@ -59,33 +65,6 @@ console.log("balance is : ", balance);
         }
     }
 ]
-```
-## Trouble Shooting
-本项目基于[filecoin.js](https://github.com/filecoin-shipyard/filecoin.js)开发, 已知存在以下问题:
-
-* 调用RPC接口`Filecoin.ChainHead`时, 存在传入参数不正确问题. 
-  该问题由于`filecoin.js`的代码错误导致, 后续项目方可能会修正. 目前请在`npm install`之后, 修改如下内容:
-  将`node_modules/filecoin.js/builds/dist/connectors/HttpJsonRpcConnector.js`文件中request修改如下:
-```javascript
-HttpJsonRpcConnector.prototype.request = function (req) {
-        return __awaiter(this, void 0, void 0, function () {
-            var call, message, resp, e_1, decoded;
-            return __generator(this, function (_a) {
-                console.log("call: ", JSON.stringify(req));
-                switch (_a.label) {
-                    case 0:
-                        call = (typeof window === 'undefined') ? node_fetch_1.default : fetch;
-                        message = {
-                            jsonrpc: "2.0",
-                            method: req.method,
-                            params: req.params || [],  // 请修改这一行
-                            id: this.reqId++,
-                        };
-                        _a.label = 1;
-                    // ....
-            });
-        });
-    };
 ```
 
 

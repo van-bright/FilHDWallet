@@ -16,13 +16,14 @@ const bignumber_js_1 = __importDefault(require("bignumber.js"));
 const __1 = require("..");
 const mnemonic = 'slight notable hurry swift remind jewel sick flip joke post story mammal';
 const FaucetAccount = 't1snqk3fn2xxcae4asvdgazjbpkv4u4beyhjx2saa';
+const FaucetAccountPrivateKey = '71f899c638051dd2b38f32b0225a0557bf39e35d6159ab1e642c39070a3a3e6c';
 const to = 't1vvgddutcmxhx2hmokm7yqqrq3cabmfqhwxp72mi';
 const CalibrationEndPoint = "https://calibration.node.glif.io";
 (() => __awaiter(void 0, void 0, void 0, function* () {
     // 导入一组助记词
-    const wallet = new __1.FilHDWallet({ url: CalibrationEndPoint /*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */ }, mnemonic);
+    // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
     // 重新创建一组助记词及HDWallet
-    // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */});
+    const wallet = new __1.FilHDWallet({ url: CalibrationEndPoint /*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */ });
     // 导出助记词
     const mns = wallet.exportMnemonic();
     console.log("mnemonics: ", mns);
@@ -46,7 +47,7 @@ const CalibrationEndPoint = "https://calibration.node.glif.io";
     let balance = yield wallet.balanceOf(defaultAddress);
     console.log("balance is : ", balance);
     // 转账操作
-    const receipt = yield wallet.transfer(FaucetAccount, to, new bignumber_js_1.default('10000000'));
+    const receipt = yield wallet.transfer(FaucetAccount, to, new bignumber_js_1.default('10000000'), FaucetAccountPrivateKey);
     console.log("transfer tx send out: ", receipt);
     balance = yield wallet.balanceOf(FaucetAccount);
     console.log("after transfer, balance is : ", balance);

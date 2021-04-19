@@ -67,11 +67,14 @@ export class FilHDWallet extends  MnemonicWalletProvider {
   }
 
   // to transfer value from 'from' to 'to' with value.
-  async transfer(from: string, to: string, value: BigNumber) {
+  // if `privateKey` is provided, the message will be signed with it,
+  // or the message is signed by `from` in this wallet.
+  async transfer(from: string, to: string, value: BigNumber, privateKey?: string) {
     const message = await super.createMessage({
       From: from,
       To: to,
       Value: value,
+      PrivateKey: privateKey
     });
 
     const signedMessage = await super.signMessage(message);

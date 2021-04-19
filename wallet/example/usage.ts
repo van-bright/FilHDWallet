@@ -3,15 +3,17 @@ import { FilHDWallet } from "..";
 
 const mnemonic = 'slight notable hurry swift remind jewel sick flip joke post story mammal';
 const FaucetAccount = 't1snqk3fn2xxcae4asvdgazjbpkv4u4beyhjx2saa';
+const FaucetAccountPrivateKey = '71f899c638051dd2b38f32b0225a0557bf39e35d6159ab1e642c39070a3a3e6c';
+
 const to = 't1vvgddutcmxhx2hmokm7yqqrq3cabmfqhwxp72mi';
 const CalibrationEndPoint = "https://calibration.node.glif.io";
 
 (async () => {
   // 导入一组助记词
-  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
+  // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
 
   // 重新创建一组助记词及HDWallet
-  // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */});
+  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */});
 
   // 导出助记词
   const mns = wallet.exportMnemonic();
@@ -44,7 +46,7 @@ const CalibrationEndPoint = "https://calibration.node.glif.io";
   console.log("balance is : ", balance);
 
   // 转账操作
-  const receipt = await wallet.transfer(FaucetAccount, to, new BigNumber('10000000'));
+  const receipt = await wallet.transfer(FaucetAccount, to, new BigNumber('10000000'), FaucetAccountPrivateKey);
   console.log("transfer tx send out: ", receipt);
 
   balance = await wallet.balanceOf(FaucetAccount);
