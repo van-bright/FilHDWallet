@@ -1,14 +1,23 @@
 {
-  "name": "tsp",
+  "name": "passion-fil-hdwallet",
   "version": "1.0.0",
-  "description": "",
-  "main": "out/index.js",
+  "description": "A hdwallet wrapper for filecoin.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oldmanfan/FilHDWallet"
+  },
   "scripts": {
     "start": "tsc && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "liangqin.fan",
+  "mail": "liangqin.fan@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "tslint": "^6.1.2"
