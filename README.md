@@ -5,9 +5,6 @@
 
 
 ## 使用说明
-项目分为两个部分, `wallet`是钱包, `filecoin.js`是wallet的依赖项目.  
-
-分别在以上两个项目中执行`npm install`
 
 完整的示例代码, 请参考[使用示例](./wallet/example/usage.ts);  
 
@@ -15,10 +12,10 @@
 创建钱包有两种方式: 重新创建, 使用已知的助记词创建.  
 ```typescript
 // 导入一组助记词
-  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
+  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, FilHDWallet.MainNetHDPath, mnemonic);
 
 // 重新创建一组助记词及HDWallet
-  const wallet1 = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */});
+  const wallet1 = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, FilHDWallet.MainNetHDPath);
 ```
 ### 转账
 使用transfer方法进行token转移, 返回交易的cid.

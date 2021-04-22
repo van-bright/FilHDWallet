@@ -13,7 +13,11 @@ const CalibrationEndPoint = "https://calibration.node.glif.io";
   // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
 
   // 重新创建一组助记词及HDWallet
-  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */});
+  // 生成主网账号
+  const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, FilHDWallet.MainNetHDPath);
+
+  // 生成测试网账号
+  // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, FilHDWallet.TestNetHDPath);
 
   // 导出助记词
   const mns = wallet.exportMnemonic();

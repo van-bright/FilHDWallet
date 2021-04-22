@@ -23,7 +23,10 @@ const CalibrationEndPoint = "https://calibration.node.glif.io";
     // 导入一组助记词
     // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, mnemonic);
     // 重新创建一组助记词及HDWallet
-    const wallet = new __1.FilHDWallet({ url: CalibrationEndPoint /*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */ });
+    // 生成主网账号
+    const wallet = new __1.FilHDWallet({ url: CalibrationEndPoint /*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */ }, __1.FilHDWallet.MainNetHDPath);
+    // 生成测试网账号
+    // const wallet = new FilHDWallet({url: CalibrationEndPoint/*, token: _YOUR_TOKEN_IF_ENDPOINT_NEEDS_ */}, FilHDWallet.TestNetHDPath);
     // 导出助记词
     const mns = wallet.exportMnemonic();
     console.log("mnemonics: ", mns);

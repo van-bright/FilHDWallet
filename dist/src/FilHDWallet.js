@@ -12,14 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilHDWallet = void 0;
 const passion_filecoin_js_1 = require("passion-filecoin.js");
 const bip39_1 = require("bip39");
+const Types_1 = require("passion-filecoin.js/builds/dist/providers/Types");
 class FilHDWallet extends passion_filecoin_js_1.MnemonicWalletProvider {
-    constructor(options, mnemonic) {
+    constructor(options, path, mnemonic) {
         const httpConnector = new passion_filecoin_js_1.HttpJsonRpcConnector(options);
         const con = new passion_filecoin_js_1.LotusClient(httpConnector);
         if (!mnemonic) {
             mnemonic = bip39_1.generateMnemonic(128);
         }
-        super(con, mnemonic, '');
+        super(con, mnemonic, path);
         this.con = con;
         this.mnemonic = mnemonic;
     }
@@ -106,4 +107,6 @@ class FilHDWallet extends passion_filecoin_js_1.MnemonicWalletProvider {
     }
 }
 exports.FilHDWallet = FilHDWallet;
+FilHDWallet.MainNetHDPath = Types_1.DEFAULT_HD_PATH;
+FilHDWallet.TestNetHDPath = Types_1.TEST_DEFAULT_HD_PATH;
 //# sourceMappingURL=FilHDWallet.js.map

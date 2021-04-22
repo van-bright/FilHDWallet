@@ -4,7 +4,9 @@ import { BigNumber } from 'bignumber.js';
 export declare class FilHDWallet extends MnemonicWalletProvider {
     private mnemonic;
     private con;
-    constructor(options: any, mnemonic?: string);
+    static MainNetHDPath: string;
+    static TestNetHDPath: string;
+    constructor(options: any, path: string, mnemonic?: string);
     exportMnemonic(): string;
     newAddress(): Promise<string>;
     exportPrivateKey(account: string): Promise<KeyInfo>;

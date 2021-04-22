@@ -1,13 +1,16 @@
 import { HttpJsonRpcConnector, MnemonicWalletProvider, LotusClient } from "passion-filecoin.js";
 import { generateMnemonic } from 'bip39';
-import { KeyInfo, Message } from "passion-filecoin.js/builds/dist/providers/Types";
+import { DEFAULT_HD_PATH, KeyInfo, Message, TEST_DEFAULT_HD_PATH } from "passion-filecoin.js/builds/dist/providers/Types";
 import { BigNumber } from 'bignumber.js';
 
 export class FilHDWallet extends  MnemonicWalletProvider {
   private mnemonic: string;
   private con: LotusClient;
 
-  constructor(options: any, mnemonic?: string) {
+  static MainNetHDPath = DEFAULT_HD_PATH;
+  static TestNetHDPath = TEST_DEFAULT_HD_PATH;
+
+  constructor(options: any, path: string, mnemonic?: string) {
     const httpConnector = new HttpJsonRpcConnector(options);
     const con = new LotusClient(httpConnector);
 
@@ -15,7 +18,7 @@ export class FilHDWallet extends  MnemonicWalletProvider {
       mnemonic = generateMnemonic(128);
     }
 
-    super(con, mnemonic!, '');
+    super(con, mnemonic!, path);
 
     this.con = con;
     this.mnemonic = mnemonic!;
